@@ -2,7 +2,7 @@ let canvas = document.createElement("canvas");
 let ctx = canvas.getContext("2d");
 
 document.body.appendChild(canvas);
-let xyPositions = [[1, 12], [5, 12], [10, 12]];// original positions of the shapes
+let xyPositions = [[0, 12], [4, 12], [8, 12]];// original positions of the shapes
 let shapesToUse = ["", "", ""]; //array of three
 let selectedShapeIndex = 0;
 
@@ -116,9 +116,9 @@ canvas.onmousemove = handleMouseMove;
 canvas.onmouseup = handleMouseUp;
 canvas.onmouseout = handleMouseOut;
 
-canvas.ontouchstart = handleMouseDown;
-canvas.ontouchmove = handleMouseMove;
-canvas.ontouchend = handleMouseUp;
+canvas.ontouchstart = handleTouchStart;
+canvas.ontouchmove = handleTouchMove;
+canvas.ontouchend = handleTouchEnd;
 canvas.ontouchcancel = handleMouseOut;
 
 // given mouse X & Y (mx & my) and shape object
