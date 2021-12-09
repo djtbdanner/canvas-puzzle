@@ -1,4 +1,8 @@
 
+// drag related vars
+let isDragging = false;
+let startX, startY;
+
 function handleMouseMove(e){
     handleMove(e, false);
 }
@@ -11,7 +15,7 @@ function handleMove(e, isTouch) {
     // tell the browser we're handling this event
     e.preventDefault();
     e.stopPropagation();
-    // calculate the current mouse position         
+    // calculate the current mouse position
     mouseX = parseInt(e.clientX - offsetX);
     mouseY = parseInt(e.clientY - offsetY);
     if (e.targetTouches && e.targetTouches[0]) {
@@ -60,7 +64,6 @@ function handleDragEnd(e, isTouch) {
     if (isTouch){
         y=y-3;
     }
-    console.log(x + " " + y)
     if (willFit(x, y, selectedShapeIndex)) {
         setColors(x, y, selectedShapeIndex);
         newShape(selectedShapeIndex, shapes[Math.floor(Math.random() * shapes.length)]);
@@ -94,20 +97,19 @@ function handleDragStart(e, isTouch) {
     }
     selectedShapeIndex = undefined;
     if (y > 8 && y < 15) {
-        if (x > 8) {
+        if (x > 7) {
             selectedShapeIndex = 2;
-        } else if (x > 3) {
+        } else if (x > 4) {
             selectedShapeIndex = 1;
         } else {
             selectedShapeIndex = 0;
         }
-        console.log(`selected shape ` + selectedShapeIndex);
+        // console.log(`selected shape ` + selectedShapeIndex);
         // set the isDragging flag
         isDragging = true;
         return;
     }
 }
-
 
 function getXYCords(e) {
     mouseX = parseInt(e.clientX - offsetX);
@@ -119,7 +121,7 @@ function getXYCords(e) {
     }
     x = parseInt(parseInt(mouseX, 10) / (COLS * 3), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
     y = parseInt(parseInt(mouseY, 10) / (ROWS * 1.5), 10);
-    console.log(`x:${x}-y:${y}`)
-    console.log(`x:${x}-y:${y}`)
+    // console.log(`x:${x}-y:${y}`)
+    // console.log(`x:${x}-y:${y}`)
     return { x, y };
 }
