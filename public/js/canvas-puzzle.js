@@ -156,7 +156,7 @@ function checkAndClear() {
 }
 
 var COLS = 10, ROWS = 20;
-var W = 300, H = 600;
+var W = 900, H = 1800;
 var BLOCK_W = W / COLS, BLOCK_H = H / ROWS;
 
 // draw a single square at (x, y)

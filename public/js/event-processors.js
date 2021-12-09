@@ -23,8 +23,8 @@ function handleMove(e, isTouch) {
         mouseX = parseInt(touchLocation.pageX - offsetX);
         mouseY = parseInt(touchLocation.pageY - offsetX);
     }
-    currentX = parseInt(parseInt(mouseX, 10) / (COLS * 3), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
-    currentY = parseInt(parseInt(mouseY, 10) / (ROWS * 1.5), 10);
+    currentX = parseInt(parseInt(mouseX, 10) / (COLS * 9), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
+    currentY = parseInt(parseInt(mouseY, 10) / (ROWS * 4.5), 10);
     if (isTouch) {
         currentY = currentY - 3;
     }
@@ -119,8 +119,8 @@ function getXYCords(e) {
         mouseX = parseInt(touchLocation.pageX - offsetX);
         mouseY = parseInt(touchLocation.pageY - offsetX);
     }
-    x = parseInt(parseInt(mouseX, 10) / (COLS * 3), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
-    y = parseInt(parseInt(mouseY, 10) / (ROWS * 1.5), 10);
+    x = parseInt(parseInt(mouseX, 10) / (COLS * 9), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
+    y = parseInt(parseInt(mouseY, 10) / (ROWS * 4.5), 10);
     // console.log(`x:${x}-y:${y}`)
     // console.log(`x:${x}-y:${y}`)
     return { x, y };
