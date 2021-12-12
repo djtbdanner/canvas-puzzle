@@ -38,13 +38,6 @@ async function buildMenu() {
     destroyById(`menu`);
     let html = ``;
     html += `<div id="menu" class="menu" onClick="destroyById('menu')">`;
-    if (!document.fullscreenElement) {
-        html += `<a class ="menuItem" onClick="openFullScreen();">FullScreen</a></br>`;
-        html += `<hr>`;
-    } else {
-        html += `<a class ="menuItem" onClick="closeFullscreen();">Exit FullScreen</a></br>`;
-        html += `<hr>`;
-    }
     html += `<a class ="menuItem" onClick="clearBoard();">New Game</a></br>`;
     html += `<hr>`;
     html += `<a class ="menuItem" >Close Menu</a></br>`;
@@ -121,26 +114,4 @@ function getYearAndWeek (){
     const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
     const result = currentdate.getFullYear() + "_" + Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7); 
     return result;
-}
-
-
-function closeFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-    }
-}
-
-function openFullScreen() {
-    var root = document.documentElement;
-    if (root.requestFullscreen) {
-        root.requestFullscreen();
-    } else if (root.webkitRequestFullscreen) {
-        root.webkitRequestFullscreen();
-    } else if (root.msRequestFullscreen) {
-        root.msRequestFullscreen();
-    }
 }
