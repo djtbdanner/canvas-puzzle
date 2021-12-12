@@ -134,6 +134,7 @@ function clearBoard(){
     for (i = 0; i < shapesToUse.length;i++){
         shapesToUse[i] = undefined;
     }
+    shapeFits = [true, true, true];
     saveLocalData();
     buildPlayCanvas();
 }
