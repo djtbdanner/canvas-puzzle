@@ -42,10 +42,12 @@ function buildPlayCanvas() {
         BLOCK_W = W / COLS, BLOCK_H = H / ROWS;
         LINE_WIDTH = 5;
     }
-    buildShape(0, shapes[Math.floor(Math.random() * shapes.length)]);
-    buildShape(1, shapes[Math.floor(Math.random() * shapes.length)]);
-    buildShape(2, shapes[Math.floor(Math.random() * shapes.length)]);
     populateFromLocalData();
+    for (i = 0; i < shapesToUse.length;i++){
+        if (!shapesToUse[i]){
+            buildShape(i, shapes[Math.floor(Math.random() * shapes.length)]);
+        }
+    }
     drawAll();
     console.log(BLOCK_H + " " + BLOCK_W)
 }
@@ -129,6 +131,9 @@ function clearBoard(){
         }
     }
     currentScore = 0;
+    for (i = 0; i < shapesToUse.length;i++){
+        shapesToUse[i] = undefined;
+    }
     saveLocalData();
     buildPlayCanvas();
 }
@@ -299,8 +304,7 @@ function gameOver(){
         addedMessages += `<br>You beat your All Time Best Score!`
     }
     buildGameOver(addedMessages);
-    
-}
+ }
 
 function getTheIndex(index, v, h) {
     let testIndex = [];

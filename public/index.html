@@ -19,16 +19,23 @@
     });
 </script>
 <html>
-<div id = `score`>
+<span id=`score`>
     <table>
         <tr>
-            <td>Score</td><td>Weekly Best</td><td>All Time Best</td>
-        </tr>    
+            <td style="width: 1%;"><img src="images/menu_icon.png" alt="menu" onClick="buildMenu()"></td>
+            <td style="width: 30%;">Score</td>
+            <td style="width: 30%;">Weekly Best</td>
+            <td style="width: 25%;">All Time Best</td>
+        </tr>
         <tr>
-            <td id = 'score'>0</td><td id = 'weekly-score'>0</td><td id = 'all-time-score'>0</td>
-        </tr>   
-    </table>    
-</div>
+            <td></td>
+            <td id='score'>0</td>
+            <td id='weekly-score'>0</td>
+            <td id='all-time-score'>0</td>
+        </tr>
+    </table>
+</span>
+
 <body>
 </body>
 

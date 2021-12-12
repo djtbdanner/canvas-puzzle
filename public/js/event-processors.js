@@ -94,9 +94,8 @@ function getXYCords(e, isTouch) {
     }
     x = parseInt(parseInt(mouseX, 10) / (COLS * BLOCK_W/10), 10); // current x and y are divided into cols and rows and this approximates then per mouse or touch location
     y = parseInt(parseInt(mouseY, 10) / (ROWS * BLOCK_W/10/2), 10);
-    // console.log(`x:${x}-y:${y}`)
     if (isTouch) {
-        y = y - 3;
+        y = y - 4;
     }
     return { x, y };
 }

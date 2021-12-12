@@ -27,11 +27,29 @@ async function buildGameOver(message) {
     html += `<p>${message}</p>`;
     html += `</td></tr>`;
     html += `<tr><td style = "text-align:center;">`;
-    html += `<tr><td style = "text-align:center;">`;
     html += `<input type="button" value="Play Again" onClick="destroyById('modal-confirm');clearBoard();" />`;
     html += `</td></tr>`;
     html += `</table>`;
     html += `</div>`;
+    createAndAppendDiv(html, 'default', true);
+}
+
+async function buildMenu() {
+    destroyById(`menu`);
+    let html = ``;
+    html += `<div id="menu" class="menu" onClick="destroyById('menu')">`;
+    if (!document.fullscreenElement) {
+        html += `<a class ="menuItem" onClick="openFullScreen();">FullScreen</a></br>`;
+        html += `<hr>`;
+    } else {
+        html += `<a class ="menuItem" onClick="closeFullscreen();">Exit FullScreen</a></br>`;
+        html += `<hr>`;
+    }
+    html += `<a class ="menuItem" onClick="clearBoard();">New Game</a></br>`;
+    html += `<hr>`;
+    html += `<a class ="menuItem" >Close Menu</a></br>`;
+    html += `</div>`;
+    // alert(html)
     createAndAppendDiv(html, 'default', false);
 }
 
@@ -63,6 +81,13 @@ function saveLocalData(){
     localStorage.setItem(`weeklyBestScore`, weeklyBestScore);
     localStorage.setItem(`weeklyBestScoreYearAndWeek`, thisYearAnd);
     localStorage.setItem(`allTimeBestScore`, allTimeBestScore);
+    for (i = 0; i < shapesToUse.length;i++){
+        if (shapesToUse[i]){
+            localStorage.setItem(`shape${i}`, JSON.stringify(shapesToUse[i]));
+        } else {
+            localStorage.removeItem(`shape${i}`);
+        }
+    }
 }
 
 function populateFromLocalData() {
@@ -82,8 +107,13 @@ function populateFromLocalData() {
     if (temp){
         allTimeBestScore = parseInt(temp, 10);
     }
+    for (i = 0; i < shapesToUse.length;i++){
+        temp  = localStorage.getItem(`shape${i}`);
+        if (temp){
+            shapesToUse[i] = JSON.parse(temp);
+        }
+    }
 }
-
 
 function getYearAndWeek (){
     let currentdate = new Date();
@@ -91,4 +121,26 @@ function getYearAndWeek (){
     const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
     const result = currentdate.getFullYear() + "_" + Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7); 
     return result;
+}
+
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+function openFullScreen() {
+    var root = document.documentElement;
+    if (root.requestFullscreen) {
+        root.requestFullscreen();
+    } else if (root.webkitRequestFullscreen) {
+        root.webkitRequestFullscreen();
+    } else if (root.msRequestFullscreen) {
+        root.msRequestFullscreen();
+    }
 }
